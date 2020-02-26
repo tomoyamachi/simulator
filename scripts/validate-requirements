@@ -5,9 +5,9 @@ simRootDir="${dirName/scripts/}"
 echo -n "Checking AWS cli installed.."
 
 if [[ $(command -v aws) ]]; then
-	echo "installed"
+	echo "installed ✅"
 else
-	echo "not available, check PATH"
+	echo "not available, check PATH ❌"
 	exit 1
 fi
 
@@ -16,37 +16,40 @@ echo -n "Checking AWS region defined.."
 #if [[ $(aws configure get region) ]]; then
 #	echo "defined"
 if [[ -n "${AWS_REGION}" ]]; then
-	echo "defined"
+	echo "defined ✅"
 elif [[ -n "${AWS_DEFAULT_REGION}" ]]; then
-	echo "defined"
+	echo "defined ✅"
 else
-  echo "not defined"
+  echo "not defined ❌"
 	exit 1
 fi
 
 echo -n "Checking Docker is running.."
 
 if [[ $(docker version) ]]; then
-	echo "running"
+	echo "running ✅"
 else
-	echo "not running"
+	echo "not running ❌"
 	exit 1
 fi
 
 echo -n "Checking persistent directory exists.."
 
 if [[ -d "${HOME}"/.kubesim ]]; then
-	echo "exists"
+	echo "exists ✅"
 else
 	mkdir -p "${HOME}"/.kubesim
-	echo "created"
+	echo "created ✅"
 fi
 
 echo -n "Checking ${simRootDir}terraform/deployments/AWS/.terraform doesn't exist.."
 
 if [[ -d "${simRootDir}"terraform/deployments/AWS/.terraform ]]; then
 	rm -R "${simRootDir}"terraform/deployments/AWS/.terraform
-	echo "directory deleted"
+	echo "directory deleted ✅"
 else
-	echo "doesn't exist"
+	echo "doesn't exist ✅"
 fi
+
+echo "Requirements validated 😎"
+
