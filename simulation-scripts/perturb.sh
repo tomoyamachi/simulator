@@ -163,7 +163,7 @@ get_pods() {
   local count
   local increment
 
-  info "Waiting for all pods to be initalised..."
+  info "Waiting for all pods to be initialized..."
   timeout="300"
   increment="3"
   count="0"
@@ -172,7 +172,7 @@ get_pods() {
     sleep $increment
     count=$((count + increment))
     if ! ((count % 9)); then
-      info "Still waiting for pods to be initalised"
+      info "Still waiting for pods to be initialized"
     fi
   done
 
